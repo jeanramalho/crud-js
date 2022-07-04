@@ -12,11 +12,17 @@ function carregado() {
 }
 
 function salvar() {
+
+   var ID = document.getElementById('field-id').value
    var nome = document.getElementById('nome').value
    var sobrenome = document.getElementById('sobrenome').value
 
    db.transaction(function(tx){
-        tx.executeSql('INSERT INTO nomes (nome, sobrenome) VALUES (?, ?)', [nome,sobrenome])
+        if(ID){
+            tx.executeSql('UPDATE nomes SET nome=?, sobrenome=? WHERE ID=?', [nome, sobrenome, ID], null)
+        }else{
+            tx.executeSql('INSERT INTO nomes (nome, sobrenome) VALUES (?, ?)', [nome,sobrenome])
+        }
    })
 
    mostrar()
@@ -30,13 +36,33 @@ function mostrar() {
             var rows = resultado.rows
             var tr = ''
             for(let i = 0; i < rows.length; i++) {
-                tr += `<tr>
-                    <td>${rows[i].nome}</td>
-                    <td>${rows[i].sobrenome}</td>
-                </tr>`
+                tr += '<tr>';
+                tr += '<td onClick="atualizar(' + rows[i].ID + ')">' + rows[i].nome + '</td>';
+                tr += '<td>' + rows[i].sobrenome + '</td>'
+                tr += '</tr>'; 
             }
 
             tabela.innerHTML = tr
         })
     }, null)
+}
+
+function atualizar(_id){
+    console.log(_id)
+    var ID = document.getElementById('field-id')
+    var nome = document.getElementById('nome')
+    var sobrenome = document.getElementById('sobrenome')
+
+    ID.value = _id
+
+    db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM nomes WHERE ID=?', [_id], function(tx, resultado) {
+            var rows = resultado.rows[0]
+            console.log(resultado)
+
+            nome.value = rows.nome
+            sobrenome.value = rows.sobrenome
+
+        })
+    })
 }
