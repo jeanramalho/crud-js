@@ -26,6 +26,7 @@ function salvar() {
    })
 
    mostrar()
+   limpa()
 }
 
 function mostrar() {
@@ -36,10 +37,10 @@ function mostrar() {
             var rows = resultado.rows
             var tr = ''
             for(let i = 0; i < rows.length; i++) {
-                tr += '<tr>';
-                tr += '<td onClick="atualizar(' + rows[i].ID + ')">' + rows[i].nome + '</td>';
-                tr += '<td>' + rows[i].sobrenome + '</td>'
-                tr += '</tr>'; 
+                tr += `<tr>
+                    <td onClick="atualizar(${rows[i].ID})">${rows[i].nome}</td>
+                    <td>${rows[i].sobrenome}</td>
+                </tr>`
             }
 
             tabela.innerHTML = tr
@@ -65,4 +66,21 @@ function atualizar(_id){
 
         })
     })
+}
+
+function deletar(){
+    var id = document.getElementById('field-id').value
+    db.transaction(function(tx){
+        tx.executeSql('DELETE FROM nomes WHERE ID=?',[id])
+    })
+    mostrar()
+    limpa()
+}
+
+function limpa() {
+    var nome = document.getElementById('nome')
+    var sobrenome = document.getElementById('sobrenome')
+
+    nome.value = ""
+    sobrenome.value = ""
 }
