@@ -10,24 +10,39 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    <div class="formulario">        
-            <input type="hidden" id="field-id" value="" />
-            <input type="text" class="nome" placeholder="Nome" id="nome">
-            <input type="text" class="sobrenome" placeholder="Sobrenome" id="sobrenome">
-            <button id="salvar">Salvar</button>
-            <button id="deletar" onclick="deletar()">Deletar</button>
-            <button id="limpar" onClick="limpa()">Limpar</button>
+    <div class="cabecalho">
+        <h1 class="titulo">Cadastro de Nome e Sobrenome</h1>
     </div>
 
-    <table id="tabela">
-        <thead>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-        </thead>
-        <tbody id="reg">
+    <div class="conteudo">
+        <div class="formulario">   
+                <div class="inputs">
+                    <!-- O input que está em hidden é responsável por pegar o id do elemento para que possam ser realizadas as operações de atualização e delete      -->
+                    <input type="hidden" id="field-id" value="" />
+                    <input type="text" class="nome input placeholder="Nome" id="nome">
+                    <input type="text" class="sobrenome input" placeholder="Sobrenome" id="sobrenome">
+                </div>
 
-        </tbody>
-    </table>
+                <div class="botoes">
+                    <button id="salvar" class="btn">Salvar</button>
+                    <button id="deletar" class="btn" onclick="deletar()">Deletar</button>
+                    <button id="limpar" class="btn" onClick="limpa()">Limpar</button>
+                </div>
+        </div>
+    
+        <div class="table">
+            <table id="tabela">
+                <thead>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                </thead>
+                <tbody id="reg">
+        
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
     
 </body>
 </html>
