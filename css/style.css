@@ -8,7 +8,29 @@ body {
     flex-direction: column
 }
 
+.cabecalho {
+    text-align: center;
+    margin: 30px;
+}
+
 .conteudo {
     display: flex;
     flex-direction: row;
+}
+
+.formulario {
+    width: 40vw;
+    margin: 5vw;
+}
+
+.table {
+    width: 40vw;
+    margin: 5vw;
+}
+
+.input {
+    width: 70%;
+    heigth: 80px;
+    border-radius: 8px;
+
 }
