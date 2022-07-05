@@ -50,8 +50,8 @@ function mostrar() {
             var tr = ''
             for(let i = 0; i < rows.length; i++) {
                 tr += `<tr>
-                    <td onClick="atualizar(${rows[i].ID})">${rows[i].nome}</td>
-                    <td>${rows[i].sobrenome}</td>
+                    <td onClick="atualizar(${rows[i].ID})" class="cedula slct">${rows[i].nome}</td>
+                    <td class="cedula">${rows[i].sobrenome}</td>
                 </tr>`
             }
 
